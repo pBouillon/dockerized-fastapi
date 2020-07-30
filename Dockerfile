@@ -1,11 +1,11 @@
-version: '3'
+FROM python
 
-services:
+RUN python -m pip install --upgrade pip
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: api
-    ports:
-      - '8000:8000'
+WORKDIR /code
+
+COPY . /code
+
+RUN pip install -r requirements.txt
+
+CMD ["python", "main.py"]
